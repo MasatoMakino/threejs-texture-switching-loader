@@ -124,8 +124,9 @@ export class TextureSwitchingLoader {
     if (imageBitmapOption == null) return;
 
     const orientation = imageBitmapOption.imageOrientation;
-    if (orientation != null && orientation !== "flipY") texture.flipY = false;
-
+    if (orientation != null) {
+      texture.flipY = orientation === "flipY";
+    }
     if (imageBitmapOption.premultiplyAlpha != null)
       texture.premultiplyAlpha =
         imageBitmapOption.premultiplyAlpha === "premultiply";
