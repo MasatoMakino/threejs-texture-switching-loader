@@ -53,7 +53,7 @@ export class TextureSwitchingLoader {
       this.imageBitmapLoader.load(
         url,
         imageBitmap => {
-          const texture = new CanvasTexture(imageBitmap as any);
+          const texture = new CanvasTexture(imageBitmap as any); //FIXME : any type.
           TextureSwitchingLoader.setTextureOptions(
             texture,
             option.canvasTextureOption
