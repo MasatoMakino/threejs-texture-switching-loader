@@ -28,7 +28,10 @@ export class TextureSwitchingLoader {
    * @param option
    * @return Promise<Texture> Texture or CanvasTexture
    */
-  public load(url: string, option?: TextureSwitchingLoaderOption) {
+  public load(
+    url: string,
+    option?: TextureSwitchingLoaderOption
+  ): Promise<Texture> {
     if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
       TextureSwitchingLoader.isSupportImageBitmap =
         typeof createImageBitmap !== "undefined";
@@ -44,7 +47,10 @@ export class TextureSwitchingLoader {
     return this.loadTexture(url, option);
   }
 
-  private loadImageBitmap(url: string, option: TextureSwitchingLoaderOption) {
+  private loadImageBitmap(
+    url: string,
+    option: TextureSwitchingLoaderOption
+  ): Promise<Texture> {
     return new Promise((resolve, reject) => {
       if (option.imageBitmapOption) {
         this.imageBitmapLoader.setOptions(option.imageBitmapOption);
@@ -69,7 +75,10 @@ export class TextureSwitchingLoader {
     });
   }
 
-  private loadTexture(url: string, option: TextureSwitchingLoaderOption) {
+  private loadTexture(
+    url: string,
+    option: TextureSwitchingLoaderOption
+  ): Promise<Texture> {
     return new Promise((resolve, reject) => {
       this.textureLoader.load(
         url,
