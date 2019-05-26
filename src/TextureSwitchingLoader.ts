@@ -17,9 +17,17 @@ export class TextureSwitchingLoader {
   private static isSupportImageBitmap: boolean;
 
   constructor(manager?: LoadingManager) {
-    this.textureLoader = new TextureLoader(manager);
-    this.imageBitmapLoader = new ImageBitmapLoader(manager);
-    this.imageBitmapLoader.setOptions({ imageOrientation: "flipY" }); //To find the same result TextureLoader and ImageBitmapLoader.
+    if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
+      TextureSwitchingLoader.isSupportImageBitmap =
+        typeof createImageBitmap !== "undefined";
+    }
+
+    if (!TextureSwitchingLoader.isSupportImageBitmap) {
+      this.textureLoader = new TextureLoader(manager);
+    } else {
+      this.imageBitmapLoader = new ImageBitmapLoader(manager);
+      this.imageBitmapLoader.setOptions({ imageOrientation: "flipY" }); //To find the same result TextureLoader and ImageBitmapLoader.
+    }
   }
   /**
    * Load image as Texture or CanvasTexture.
@@ -32,11 +40,6 @@ export class TextureSwitchingLoader {
     url: string,
     option?: TextureSwitchingLoaderOption
   ): Promise<Texture> {
-    if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
-      TextureSwitchingLoader.isSupportImageBitmap =
-        typeof createImageBitmap !== "undefined";
-    }
-
     if (option == null) {
       option = {};
     }
