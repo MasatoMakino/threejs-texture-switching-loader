@@ -3,7 +3,7 @@
 const { series } = require("gulp");
 
 const doc = require("gulptask-tsdoc")();
-const server = require("gulptask-dev-server")("./docs/demo", { port: 8001 });
+const server = require("gulptask-dev-server")("./docs/demo");
 const { bundleDevelopment, watchBundle } = require("gulptask-webpack")(
   "./webpack.config.js"
 );
