@@ -4,9 +4,17 @@ import { TextureLoader, ImageBitmapLoader, CanvasTexture } from "three";
  */
 export class TextureSwitchingLoader {
     constructor(manager) {
-        this.textureLoader = new TextureLoader(manager);
-        this.imageBitmapLoader = new ImageBitmapLoader(manager);
-        this.imageBitmapLoader.setOptions({ imageOrientation: "flipY" }); //To find the same result TextureLoader and ImageBitmapLoader.
+        if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
+            TextureSwitchingLoader.isSupportImageBitmap =
+                typeof createImageBitmap !== "undefined";
+        }
+        if (!TextureSwitchingLoader.isSupportImageBitmap) {
+            this.textureLoader = new TextureLoader(manager);
+        }
+        else {
+            this.imageBitmapLoader = new ImageBitmapLoader(manager);
+            this.imageBitmapLoader.setOptions({ imageOrientation: "flipY" }); //To find the same result TextureLoader and ImageBitmapLoader.
+        }
     }
     /**
      * Load image as Texture or CanvasTexture.
@@ -16,10 +24,6 @@ export class TextureSwitchingLoader {
      * @return Promise<Texture> Texture or CanvasTexture
      */
     load(url, option) {
-        if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
-            TextureSwitchingLoader.isSupportImageBitmap =
-                typeof createImageBitmap !== "undefined";
-        }
         if (option == null) {
             option = {};
         }
@@ -79,8 +83,9 @@ export class TextureSwitchingLoader {
         if (imageBitmapOption == null)
             return;
         const orientation = imageBitmapOption.imageOrientation;
-        if (orientation != null && orientation !== "flipY")
-            texture.flipY = false;
+        if (orientation != null) {
+            texture.flipY = orientation === "flipY";
+        }
         if (imageBitmapOption.premultiplyAlpha != null)
             texture.premultiplyAlpha =
                 imageBitmapOption.premultiplyAlpha === "premultiply";
