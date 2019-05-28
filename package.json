@@ -22,14 +22,12 @@
   },
   "scripts": {
     "start:dev": "gulp start_dev",
-    "build": "npm run prettier:src && gulp build && npm run doc:card",
-    "prettier:src": "prettier --write './!(bin|docs|coverage)/**/*.{js,ts,json}' ",
-    "doc:card": "repoimg -n MasatoMakino/threejs-texture-switching-loader -o ./docs/card.png",
-    "prettier:gulp": "gulp prettierTask"
+    "build": "gulp build && npm run doc:card",
+    "doc:card": "repoimg -n MasatoMakino/threejs-texture-switching-loader -o ./docs/card.png"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier:src"
+      "pre-commit": "npx gulp prettierTask"
     }
   },
   "dependencies": {}
