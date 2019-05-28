@@ -24,7 +24,8 @@
     "start:dev": "gulp start_dev",
     "build": "npm run prettier:src && gulp build && npm run doc:card",
     "prettier:src": "prettier --write './!(bin|docs|coverage)/**/*.{js,ts,json}' ",
-    "doc:card": "repoimg -n MasatoMakino/threejs-texture-switching-loader -o ./docs/card.png"
+    "doc:card": "repoimg -n MasatoMakino/threejs-texture-switching-loader -o ./docs/card.png",
+    "prettier:gulp": "gulp prettierTask"
   },
   "husky": {
     "hooks": {
