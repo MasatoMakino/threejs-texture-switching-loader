@@ -3,20 +3,25 @@
 const { src, dest, lastRun } = require("gulp");
 const { prettierPlugin } = require("./prettierPlugin");
 
-const prettierTask = () => {
-  const addDefaultIgnore = globs => {
-    globs.push("!node_modules/**");
-    globs.push("!docs/**");
-    globs.push("!**/*.d.ts");
-    return globs;
+module.exports = glob => {
+  const prettierTask = () => {
+    const globs = getGlob(glob);
+    console.log(globs);
+    return src(globs, { since: lastRun(prettierTask), base: "./" })
+      .pipe(prettierPlugin())
+      .pipe(dest("./"));
   };
 
-  let globs = ["./**/*+(.js|.ts|.json)"];
-  globs = addDefaultIgnore(globs);
+  const getGlob = glob => {
+    if (typeof glob === "string") {
+      glob = [glob];
+    }
+    if (glob == null || glob === []) {
+      glob = ["./**/*+(.js|.ts|.json|.css|.scss|.sass)"];
+    }
+    glob = glob.concat(["!node_modules/**", "!docs/**", "!**/*.d.ts"]);
+    return glob;
+  };
 
-  return src(globs, { since: lastRun(prettierTask) })
-    .pipe(prettierPlugin())
-    .pipe(dest("./"));
+  return prettierTask;
 };
-
-exports.prettierTask = prettierTask;

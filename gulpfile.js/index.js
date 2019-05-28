@@ -18,5 +18,7 @@ const watchTasks = cb => {
 exports.start_dev = series(watchTasks, server);
 exports.build = series(tsc, bundleDevelopment, doc);
 
-const { prettierTask } = require("./prettier");
-exports.prettierTask = prettierTask;
+const prettier = require("./prettier")(
+  "./**/*+(.js|.ts|.json|.css|.scss|.sass)"
+);
+exports.prettierTask = prettier;
