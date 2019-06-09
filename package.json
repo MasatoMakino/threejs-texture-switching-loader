@@ -1,6 +1,6 @@
 {
   "name": "threejs-texture-switching-loader",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.",
   "main": "./bin/index.js",
   "types": "./bin/index.d.ts",
@@ -16,9 +16,9 @@
     "gulptask-tsc": "https://github.com/MasatoMakino/gulptask-tsc.git",
     "gulptask-tsdoc": "https://github.com/MasatoMakino/gulptask-tsdoc.git",
     "gulptask-webpack": "https://github.com/MasatoMakino/gulptask-webpack.git",
-    "husky": "^2.3.0",
-    "prettier": "^1.17.1",
-    "three": "^0.104.0"
+    "husky": "^2.4.0",
+    "prettier": "^1.18.2",
+    "three": "^0.105.2"
   },
   "scripts": {
     "start:dev": "gulp start_dev",
