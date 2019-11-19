@@ -81,34 +81,10 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./demoSrc/demo.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./demoSrc/demo_ImageBitmapLoader.js");
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./bin/TextureSwitchingLoader.js":
-/*!***************************************!*\
-  !*** ./bin/TextureSwitchingLoader.js ***!
-  \***************************************/
-/*! exports provided: TextureSwitchingLoader */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TextureSwitchingLoader\", function() { return TextureSwitchingLoader; });\n/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! three */ \"./node_modules/three/build/three.module.js\");\n\n/**\n * Texture image loader, Switching TextureLoader and ImageBitmapLoader.\n */\n\nclass TextureSwitchingLoader {\n  constructor(manager) {\n    this.cacheMap = new Map();\n\n    if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {\n      TextureSwitchingLoader.isSupportImageBitmap = typeof createImageBitmap !== \"undefined\";\n    }\n\n    if (!TextureSwitchingLoader.isSupportImageBitmap) {\n      this.textureLoader = new three__WEBPACK_IMPORTED_MODULE_0__[\"TextureLoader\"](manager);\n    } else {\n      this.imageBitmapLoader = new three__WEBPACK_IMPORTED_MODULE_0__[\"ImageBitmapLoader\"](manager);\n      this.imageBitmapLoader.setOptions({\n        imageOrientation: \"flipY\"\n      }); //To find the same result TextureLoader and ImageBitmapLoader.\n    }\n  }\n  /**\n   * Load image as Texture or CanvasTexture.\n   *\n   * @param url\n   * @param option\n   * @return Promise<Texture> Texture or CanvasTexture\n   */\n\n\n  load(url, option) {\n    if (option == null) {\n      option = {};\n    }\n\n    if (TextureSwitchingLoader.isSupportImageBitmap) {\n      return this.loadImageBitmap(url, option);\n    }\n\n    return this.loadTexture(url, option);\n  }\n\n  loadImageBitmap(url, option) {\n    return new Promise((resolve, reject) => {\n      const onload = imageBitmap => {\n        this.cacheMap.set(url, imageBitmap);\n        const texture = new three__WEBPACK_IMPORTED_MODULE_0__[\"CanvasTexture\"](imageBitmap); //FIXME : any type.\n\n        TextureSwitchingLoader.setTextureOptions(texture, option.canvasTextureOption);\n        resolve(texture);\n      };\n\n      const cached = this.cacheMap.get(url);\n\n      if (cached !== undefined) {\n        onload(cached);\n      }\n\n      if (option.imageBitmapOption) {\n        this.imageBitmapLoader.setOptions(option.imageBitmapOption);\n      }\n\n      this.imageBitmapLoader.load(url, onload, undefined, err => {\n        console.log(\"TextureSwitchingLoader : \");\n        reject(err);\n      });\n    });\n  }\n\n  loadTexture(url, option) {\n    return new Promise((resolve, reject) => {\n      this.textureLoader.load(url, texture => {\n        TextureSwitchingLoader.setImageBitmapOptions(texture, option.imageBitmapOption);\n        TextureSwitchingLoader.setTextureOptions(texture, option.canvasTextureOption);\n        resolve(texture);\n      }, undefined, err => {\n        console.log(\"TextureSwitchingLoader : \");\n        reject(err);\n      });\n    });\n  }\n\n  static setTextureOptions(texture, option) {\n    if (option == null) return;\n    if (option.mapping != null) texture.mapping = option.mapping;\n    if (option.wrapS != null) texture.wrapS = option.wrapS;\n    if (option.wrapT != null) texture.wrapT = option.wrapT;\n    if (option.magFilter != null) texture.magFilter = option.magFilter;\n    if (option.minFilter != null) texture.minFilter = option.minFilter;\n    if (option.format != null) texture.format = option.format;\n    if (option.type != null) texture.type = option.type;\n    if (option.anisotropy != null) texture.anisotropy = option.anisotropy;\n  }\n\n  static setImageBitmapOptions(texture, imageBitmapOption) {\n    if (imageBitmapOption == null) return;\n    const orientation = imageBitmapOption.imageOrientation;\n\n    if (orientation != null) {\n      texture.flipY = orientation === \"flipY\";\n    }\n\n    if (imageBitmapOption.premultiplyAlpha != null) texture.premultiplyAlpha = imageBitmapOption.premultiplyAlpha === \"premultiply\";\n  }\n\n}\n\n//# sourceURL=webpack:///./bin/TextureSwitchingLoader.js?");
-
-/***/ }),
-
-/***/ "./bin/index.js":
-/*!**********************!*\
-  !*** ./bin/index.js ***!
-  \**********************/
-/*! exports provided: TextureSwitchingLoader */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _TextureSwitchingLoader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TextureSwitchingLoader */ \"./bin/TextureSwitchingLoader.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"TextureSwitchingLoader\", function() { return _TextureSwitchingLoader__WEBPACK_IMPORTED_MODULE_0__[\"TextureSwitchingLoader\"]; });\n\n\n\n//# sourceURL=webpack:///./bin/index.js?");
-
-/***/ }),
 
 /***/ "./demoSrc/common.js":
 /*!***************************!*\
@@ -122,15 +98,15 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
-/***/ "./demoSrc/demo.js":
-/*!*************************!*\
-  !*** ./demoSrc/demo.js ***!
-  \*************************/
+/***/ "./demoSrc/demo_ImageBitmapLoader.js":
+/*!*******************************************!*\
+  !*** ./demoSrc/demo_ImageBitmapLoader.js ***!
+  \*******************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bin_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../bin/index */ \"./bin/index.js\");\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common */ \"./demoSrc/common.js\");\n/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! three */ \"./node_modules/three/build/three.module.js\");\n\n\n\nconst W = 640;\nconst H = 480;\n\nconst onDomContentsLoaded = () => {\n  const scene = Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"initScene\"])();\n  Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"initLight\"])(scene);\n  const camera = Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"initCamera\"])(scene, W, H);\n  const renderer = Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"initRenderer\"])(W, H);\n  const control = Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"initControl\"])(camera);\n  Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"initHelper\"])(scene);\n  initSphere(scene);\n  Object(_common__WEBPACK_IMPORTED_MODULE_1__[\"render\"])(control, renderer, scene, camera);\n};\n\nconst initSphere = scene => {\n  const geo = new three__WEBPACK_IMPORTED_MODULE_2__[\"SphereGeometry\"](20, 16, 16);\n  const mat = new three__WEBPACK_IMPORTED_MODULE_2__[\"MeshBasicMaterial\"]();\n  const mesh = new three__WEBPACK_IMPORTED_MODULE_2__[\"Mesh\"](geo, mat);\n  scene.add(mesh);\n  const loader = new _bin_index__WEBPACK_IMPORTED_MODULE_0__[\"TextureSwitchingLoader\"]();\n  loader.load(\"./earth.jpg\", {\n    imageBitmapOption: {\n      imageOrientation: \"flipY\"\n    }\n  }).then(texture => {\n    mat.map = texture;\n    mat.needsUpdate = true;\n    console.log(texture);\n  });\n  loader.load(\"./earth.jpg\").then(texture => {\n    console.log(texture);\n  });\n  loader.load(\"./earth.jpg\");\n  loader.load(\"./earth.jpg\");\n  loader.load(\"./earth.jpg\");\n  loader.load(\"./earth.jpg\");\n  loader.load(\"./earth.jpg\");\n};\n\nwindow.onload = onDomContentsLoaded;\n\n//# sourceURL=webpack:///./demoSrc/demo.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ \"./demoSrc/common.js\");\n/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three */ \"./node_modules/three/build/three.module.js\");\n\n\nconst W = 640;\nconst H = 480;\n\nconst onDomContentsLoaded = () => {\n  const scene = Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"initScene\"])();\n  Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"initLight\"])(scene);\n  const camera = Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"initCamera\"])(scene, W, H);\n  const renderer = Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"initRenderer\"])(W, H);\n  const control = Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"initControl\"])(camera);\n  Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"initHelper\"])(scene);\n  initSphere(scene);\n  Object(_common__WEBPACK_IMPORTED_MODULE_0__[\"render\"])(control, renderer, scene, camera);\n};\n\nconst initSphere = scene => {\n  const geo = new three__WEBPACK_IMPORTED_MODULE_1__[\"SphereGeometry\"](20, 16, 16);\n  const mat = new three__WEBPACK_IMPORTED_MODULE_1__[\"MeshBasicMaterial\"]();\n  const mesh = new three__WEBPACK_IMPORTED_MODULE_1__[\"Mesh\"](geo, mat);\n  scene.add(mesh);\n  const loader = new three__WEBPACK_IMPORTED_MODULE_1__[\"ImageBitmapLoader\"]();\n  loader.load(\"./earth.jpg\", function (imageBitmap) {\n    const texture = new three__WEBPACK_IMPORTED_MODULE_1__[\"CanvasTexture\"](imageBitmap);\n    mat.map = texture;\n    mat.needsUpdate = true;\n    console.log(texture);\n  }, undefined, function (err) {\n    console.log(\"An error happened\", err);\n  });\n};\n\nwindow.onload = onDomContentsLoaded;\n\n//# sourceURL=webpack:///./demoSrc/demo_ImageBitmapLoader.js?");
 
 /***/ }),
 

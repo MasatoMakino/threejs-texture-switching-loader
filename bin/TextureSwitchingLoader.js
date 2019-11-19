@@ -4,6 +4,7 @@ import { TextureLoader, ImageBitmapLoader, CanvasTexture } from "three";
  */
 export class TextureSwitchingLoader {
     constructor(manager) {
+        this.cacheMap = new Map();
         if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
             TextureSwitchingLoader.isSupportImageBitmap =
                 typeof createImageBitmap !== "undefined";
@@ -34,14 +35,20 @@ export class TextureSwitchingLoader {
     }
     loadImageBitmap(url, option) {
         return new Promise((resolve, reject) => {
-            if (option.imageBitmapOption) {
-                this.imageBitmapLoader.setOptions(option.imageBitmapOption);
-            }
-            this.imageBitmapLoader.load(url, imageBitmap => {
+            const onload = imageBitmap => {
+                this.cacheMap.set(url, imageBitmap);
                 const texture = new CanvasTexture(imageBitmap); //FIXME : any type.
                 TextureSwitchingLoader.setTextureOptions(texture, option.canvasTextureOption);
                 resolve(texture);
-            }, undefined, err => {
+            };
+            const cached = this.cacheMap.get(url);
+            if (cached !== undefined) {
+                onload(cached);
+            }
+            if (option.imageBitmapOption) {
+                this.imageBitmapLoader.setOptions(option.imageBitmapOption);
+            }
+            this.imageBitmapLoader.load(url, onload, undefined, err => {
                 console.log("TextureSwitchingLoader : ");
                 reject(err);
             });

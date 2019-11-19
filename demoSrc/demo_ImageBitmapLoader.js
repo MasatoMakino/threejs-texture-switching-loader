@@ -1,4 +1,3 @@
-import { TextureSwitchingLoader } from "../bin/index";
 import {
   initScene,
   initLight,
@@ -8,7 +7,13 @@ import {
   initHelper,
   render
 } from "./common";
-import { Mesh, MeshBasicMaterial, SphereGeometry } from "three";
+import {
+  CanvasTexture,
+  ImageBitmapLoader,
+  Mesh,
+  MeshBasicMaterial,
+  SphereGeometry
+} from "three";
 
 const W = 640;
 const H = 480;
@@ -30,23 +35,23 @@ const initSphere = scene => {
   const mesh = new Mesh(geo, mat);
   scene.add(mesh);
 
-  const loader = new TextureSwitchingLoader();
-  loader
-    .load("./earth.jpg", { imageBitmapOption: { imageOrientation: "flipY" } })
-    .then(texture => {
+  const loader = new ImageBitmapLoader();
+  loader.load(
+    "./earth.jpg",
+
+    function(imageBitmap) {
+      const texture = new CanvasTexture(imageBitmap);
       mat.map = texture;
       mat.needsUpdate = true;
       console.log(texture);
-    });
-  loader.load("./earth.jpg").then(texture => {
-    console.log(texture);
-  });
+    },
 
-  loader.load("./earth.jpg");
-  loader.load("./earth.jpg");
-  loader.load("./earth.jpg");
-  loader.load("./earth.jpg");
-  loader.load("./earth.jpg");
+    undefined,
+
+    function(err) {
+      console.log("An error happened", err);
+    }
+  );
 };
 
 window.onload = onDomContentsLoaded;
