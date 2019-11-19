@@ -16,6 +16,8 @@ export class TextureSwitchingLoader {
   public imageBitmapLoader: ImageBitmapLoader;
   private static isSupportImageBitmap: boolean;
 
+  private cacheMap: Map<string, ImageBitmap> = new Map<string, ImageBitmap>();
+
   constructor(manager?: LoadingManager) {
     if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
       TextureSwitchingLoader.isSupportImageBitmap =
@@ -55,26 +57,29 @@ export class TextureSwitchingLoader {
     option: TextureSwitchingLoaderOption
   ): Promise<Texture> {
     return new Promise((resolve, reject) => {
+      const onload = imageBitmap => {
+        this.cacheMap.set(url, imageBitmap);
+        const texture = new CanvasTexture(imageBitmap as any); //FIXME : any type.
+        TextureSwitchingLoader.setTextureOptions(
+          texture,
+          option.canvasTextureOption
+        );
+        resolve(texture);
+      };
+
+      const cached = this.cacheMap.get(url);
+      if (cached !== undefined) {
+        onload(cached);
+      }
+
       if (option.imageBitmapOption) {
         this.imageBitmapLoader.setOptions(option.imageBitmapOption);
       }
 
-      this.imageBitmapLoader.load(
-        url,
-        imageBitmap => {
-          const texture = new CanvasTexture(imageBitmap as any); //FIXME : any type.
-          TextureSwitchingLoader.setTextureOptions(
-            texture,
-            option.canvasTextureOption
-          );
-          resolve(texture);
-        },
-        undefined,
-        err => {
-          console.log("TextureSwitchingLoader : ");
-          reject(err);
-        }
-      );
+      this.imageBitmapLoader.load(url, onload, undefined, err => {
+        console.log("TextureSwitchingLoader : ");
+        reject(err);
+      });
     });
   }
 
