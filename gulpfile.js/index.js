@@ -1,23 +1,19 @@
 "use strict";
 
-const { series, parallel, watch } = require("gulp");
+const { series, parallel } = require("gulp");
 
-const doc = require("gulptask-tsdoc")();
-const server = require("gulptask-dev-server")("./docs/demo");
-const { bundleDevelopment, watchBundle } = require("gulptask-webpack")(
-  "./webpack.config.js"
-);
-const { tsc, watchTsc } = require("gulptask-tsc")();
+const doc = require("gulptask-tsdoc").get();
+const server = require("gulptask-dev-server").get("./docs/demo");
+const { bundleDemo, watchDemo } = require("gulptask-demo-page").get({
+  body: `<canvas id="webgl-canvas" width="640" height="480"></canvas>`
+});
 
-const prettierGlob = ["./**/*+(.js|.ts|.json|.css|.scss|.sass)", "!bin/**"];
-const prettier = require("./prettier")(prettierGlob);
-exports.prettierTask = prettier;
+const { tsc, watchTsc } = require("gulptask-tsc").get();
 
-const watchTasks = cb => {
-  watchBundle();
+const watchTasks = async () => {
+  watchDemo();
   watchTsc();
-  cb();
 };
 
 exports.start_dev = series(watchTasks, server);
-exports.build = series(prettier, tsc, parallel(bundleDevelopment, doc));
+exports.build = series(tsc, parallel(bundleDemo, doc));
