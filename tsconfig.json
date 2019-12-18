@@ -7,6 +7,7 @@
     "declarationMap": true,
     "outDir": "./bin",
     "rootDir": "./src",
+    "incremental": true,
 
     /* Module Resolution Options */
     "moduleResolution": "node",
