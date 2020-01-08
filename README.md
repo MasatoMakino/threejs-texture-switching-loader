@@ -26,8 +26,6 @@ npm install https://github.com/MasatoMakino/threejs-texture-switching-loader.git
 
 ### Import
 
-threejs-texture-switching-loader is composed of ES6 modules and TypeScript d.ts files.
-
 At first, import classes.
 
 ```js
@@ -62,7 +60,7 @@ loader.load("./earth.jpg").then(texture => {
 });
 ```
 
-Like [ImageBitmapLoader](https://threejs.org/docs/#api/en/loaders/ImageBitmapLoader),　TextureSwitchingLoader.load() return Promise Object.
+Like [ImageBitmapLoader](https://threejs.org/docs/#api/en/loaders/ImageBitmapLoader),　 TextureSwitchingLoader.load() return Promise object.
 
 ## API Documents
 

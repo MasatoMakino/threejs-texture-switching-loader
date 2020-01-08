@@ -1,9 +1,14 @@
 {
   "name": "threejs-texture-switching-loader",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.",
-  "main": "./bin/index.js",
-  "types": "./bin/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "module": "./esm/index.js",
+  "files": [
+    "lib",
+    "esm"
+  ],
   "repository": "https://MasatoMakino@github.com/MasatoMakino/threejs-texture-switching-loader.git",
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
@@ -13,14 +18,15 @@
     "gulptask-dev-server": "https://github.com/MasatoMakino/gulptask-dev-server.git",
     "gulptask-tsc": "https://github.com/MasatoMakino/gulptask-tsc.git",
     "gulptask-tsdoc": "https://github.com/MasatoMakino/gulptask-tsdoc.git",
-    "husky": "^3.1.0",
+    "husky": "^4.0.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "three": "^0.111.0"
+    "three": "^0.112.1"
   },
   "scripts": {
     "start:dev": "gulp start_dev",
     "build": "gulp build && npm run doc:card",
+    "build:clean": "gulp build_clean && npm run doc:card",
     "doc:card": "repoimg -n MasatoMakino/threejs-texture-switching-loader -o ./docs/card.png"
   },
   "husky": {
@@ -28,5 +34,8 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "three": "^0.112.1"
+  }
 }

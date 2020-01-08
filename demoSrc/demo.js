@@ -1,4 +1,4 @@
-import { TextureSwitchingLoader } from "../bin/index";
+import { TextureSwitchingLoader } from "../lib/index";
 import {
   initScene,
   initLight,
