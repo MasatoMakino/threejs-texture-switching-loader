@@ -36,6 +36,6 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "three": "^0.112.1"
+    "three": "^0.116.1"
   }
 }
