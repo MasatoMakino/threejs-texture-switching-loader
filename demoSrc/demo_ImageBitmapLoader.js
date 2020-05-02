@@ -1,3 +1,9 @@
+/**
+ * ImageBitmapLoaderを直接利用した場合のデモ。
+ * サポートされていないブラウザーではエラーが発生する。
+ * また、上下反転の補正は行われない。
+ */
+
 import {
   initScene,
   initLight,
@@ -5,14 +11,14 @@ import {
   initControl,
   initRenderer,
   initHelper,
-  render
+  render,
 } from "./common";
 import {
   CanvasTexture,
   ImageBitmapLoader,
   Mesh,
   MeshBasicMaterial,
-  SphereGeometry
+  SphereGeometry,
 } from "three";
 
 const W = 640;
@@ -29,7 +35,7 @@ const onDomContentsLoaded = () => {
   render(control, renderer, scene, camera);
 };
 
-const initSphere = scene => {
+const initSphere = (scene) => {
   const geo = new SphereGeometry(20, 16, 16);
   const mat = new MeshBasicMaterial();
   const mesh = new Mesh(geo, mat);
@@ -39,7 +45,7 @@ const initSphere = scene => {
   loader.load(
     "./earth.jpg",
 
-    function(imageBitmap) {
+    function (imageBitmap) {
       const texture = new CanvasTexture(imageBitmap);
       mat.map = texture;
       mat.needsUpdate = true;
@@ -48,7 +54,7 @@ const initSphere = scene => {
 
     undefined,
 
-    function(err) {
+    function (err) {
       console.log("An error happened", err);
     }
   );
