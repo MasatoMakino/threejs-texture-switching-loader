@@ -1,10 +1,9 @@
-import { TextureLoader, ImageBitmapLoader, CanvasTexture } from "three";
+import { TextureLoader, ImageBitmapLoader, CanvasTexture, } from "three";
 /**
  * Texture image loader, Switching TextureLoader and ImageBitmapLoader.
  */
 export class TextureSwitchingLoader {
     constructor(manager) {
-        this.cacheMap = new Map();
         if (TextureSwitchingLoader.isSupportImageBitmap === undefined) {
             TextureSwitchingLoader.isSupportImageBitmap =
                 typeof createImageBitmap !== "undefined";
@@ -35,20 +34,15 @@ export class TextureSwitchingLoader {
     }
     loadImageBitmap(url, option) {
         return new Promise((resolve, reject) => {
-            const onload = imageBitmap => {
-                this.cacheMap.set(url, imageBitmap);
-                const texture = new CanvasTexture(imageBitmap); //FIXME : any type.
+            const onload = (imageBitmap) => {
+                const texture = new CanvasTexture(imageBitmap);
                 TextureSwitchingLoader.setTextureOptions(texture, option.canvasTextureOption);
                 resolve(texture);
             };
-            const cached = this.cacheMap.get(url);
-            if (cached !== undefined) {
-                onload(cached);
-            }
             if (option.imageBitmapOption) {
                 this.imageBitmapLoader.setOptions(option.imageBitmapOption);
             }
-            this.imageBitmapLoader.load(url, onload, undefined, err => {
+            this.imageBitmapLoader.load(url, onload, undefined, (err) => {
                 console.log("TextureSwitchingLoader : ");
                 reject(err);
             });
@@ -56,11 +50,11 @@ export class TextureSwitchingLoader {
     }
     loadTexture(url, option) {
         return new Promise((resolve, reject) => {
-            this.textureLoader.load(url, texture => {
+            this.textureLoader.load(url, (texture) => {
                 TextureSwitchingLoader.setImageBitmapOptions(texture, option.imageBitmapOption);
                 TextureSwitchingLoader.setTextureOptions(texture, option.canvasTextureOption);
                 resolve(texture);
-            }, undefined, err => {
+            }, undefined, (err) => {
                 console.log("TextureSwitchingLoader : ");
                 reject(err);
             });

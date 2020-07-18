@@ -87,7 +87,7 @@
 					<h3>Import</h3>
 				</a>
 				<p>At first, import classes.</p>
-				<pre><code class="language-js"><span class="hljs-keyword">import</span> { TextureSwitchingLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">"threejs-texture-switching-loader"</span>;</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">import</span> { TextureSwitchingLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;threejs-texture-switching-loader&quot;</span>;</code></pre>
 				<a href="#load-images" id="load-images" style="color: inherit; text-decoration: none;">
 					<h3>Load images</h3>
 				</a>
@@ -97,7 +97,7 @@
 scene.add(mesh);
 
 <span class="hljs-keyword">const</span> loader = <span class="hljs-keyword">new</span> TextureSwitchingLoader();
-loader.load(<span class="hljs-string">"./earth.jpg"</span>).then(<span class="hljs-function"><span class="hljs-params">texture</span> =&gt;</span> {
+loader.load(<span class="hljs-string">&quot;./earth.jpg&quot;</span>).then(<span class="hljs-function"><span class="hljs-params">texture</span> =&gt;</span> {
   mat.map = texture;
   mat.needsUpdate = <span class="hljs-literal">true</span>; <span class="hljs-comment">// &lt;- on changed map, you must set needsUpdate.</span>
 });</code></pre>
@@ -105,7 +105,7 @@ loader.load(<span class="hljs-string">"./earth.jpg"</span>).then(<span class="hl
 				<pre><code class="language-js"><span class="hljs-keyword">const</span> geo = <span class="hljs-keyword">new</span> SphereGeometry(<span class="hljs-number">20</span>, <span class="hljs-number">16</span>, <span class="hljs-number">16</span>);
 
 <span class="hljs-keyword">const</span> loader = <span class="hljs-keyword">new</span> TextureSwitchingLoader();
-loader.load(<span class="hljs-string">"./earth.jpg"</span>).then(<span class="hljs-function"><span class="hljs-params">texture</span> =&gt;</span> {
+loader.load(<span class="hljs-string">&quot;./earth.jpg&quot;</span>).then(<span class="hljs-function"><span class="hljs-params">texture</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> mat = <span class="hljs-keyword">new</span> MeshBasicMaterial({ <span class="hljs-attr">map</span>: texture });
   <span class="hljs-keyword">const</span> mesh = <span class="hljs-keyword">new</span> Mesh(geo, mat);
   scene.add(mesh);
@@ -169,6 +169,5 @@ loader.load(<span class="hljs-string">"./earth.jpg"</span>).then(<span class="hl
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

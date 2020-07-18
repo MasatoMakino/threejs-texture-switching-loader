@@ -7,7 +7,6 @@ export declare class TextureSwitchingLoader {
     textureLoader: TextureLoader;
     imageBitmapLoader: ImageBitmapLoader;
     private static isSupportImageBitmap;
-    private cacheMap;
     constructor(manager?: LoadingManager);
     /**
      * Load image as Texture or CanvasTexture.
