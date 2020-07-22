@@ -1,8 +1,9 @@
 # threejs-texture-switching-loader
 
-Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.
+> Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1fda6a0f5c2e057085ae/maintainability)](https://codeclimate.com/github/MasatoMakino/threejs-texture-switching-loader/maintainability)
 
 ## Demo
 
@@ -41,7 +42,7 @@ const mesh = new Mesh(geo, mat);
 scene.add(mesh);
 
 const loader = new TextureSwitchingLoader();
-loader.load("./earth.jpg").then(texture => {
+loader.load("./earth.jpg").then((texture) => {
   mat.map = texture;
   mat.needsUpdate = true; // <- on changed map, you must set needsUpdate.
 });
@@ -53,7 +54,7 @@ or
 const geo = new SphereGeometry(20, 16, 16);
 
 const loader = new TextureSwitchingLoader();
-loader.load("./earth.jpg").then(texture => {
+loader.load("./earth.jpg").then((texture) => {
   const mat = new MeshBasicMaterial({ map: texture });
   const mesh = new Mesh(geo, mat);
   scene.add(mesh);
@@ -68,4 +69,4 @@ Like [ImageBitmapLoader](https://threejs.org/docs/#api/en/loaders/ImageBitmapLoa
 
 ## License
 
-threejs-texture-switching-loader is [MIT licensed](LICENSE).
+[MIT license](LICENSE).
