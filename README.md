@@ -5,6 +5,8 @@
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1fda6a0f5c2e057085ae/maintainability)](https://codeclimate.com/github/MasatoMakino/threejs-texture-switching-loader/maintainability)
 
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=MasatoMakino&repo=threejs-texture-switching-loader&show_owner=true)](https://github.com/MasatoMakino/threejs-texture-switching-loader)
+
 ## Demo
 
 [Demo Page](https://masatomakino.github.io/threejs-texture-switching-loader/demo/)

@@ -25,9 +25,8 @@
   },
   "scripts": {
     "start:dev": "gulp start_dev",
-    "build": "gulp build && npm run doc:card",
-    "build:clean": "gulp build_clean && npm run doc:card",
-    "doc:card": "repoimg -n MasatoMakino/threejs-texture-switching-loader -o ./docs/card.png"
+    "build": "gulp build",
+    "build:clean": "gulp build_clean"
   },
   "husky": {
     "hooks": {
