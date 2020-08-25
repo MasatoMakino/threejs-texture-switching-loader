@@ -19,7 +19,7 @@
     "gulptask-tsc": "https://github.com/MasatoMakino/gulptask-tsc.git",
     "gulptask-tsdoc": "https://github.com/MasatoMakino/gulptask-tsdoc.git",
     "husky": "^4.2.5",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.0",
     "pretty-quick": "^3.0.0",
     "three": "^0.119.1"
   },
