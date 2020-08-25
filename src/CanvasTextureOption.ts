@@ -3,7 +3,7 @@ import {
   Wrapping,
   TextureFilter,
   PixelFormat,
-  TextureDataType
+  TextureDataType,
 } from "three";
 
 /**
