@@ -29,6 +29,7 @@ export class TextureSwitchingLoader {
       this.imageBitmapLoader.setOptions({ imageOrientation: "flipY" }); //To find the same result TextureLoader and ImageBitmapLoader.
     }
   }
+
   /**
    * Load image as Texture or CanvasTexture.
    *
@@ -107,14 +108,15 @@ export class TextureSwitchingLoader {
     option: CanvasTextureOption
   ) {
     if (option == null) return;
-    if (option.mapping != null) texture.mapping = option.mapping;
-    if (option.wrapS != null) texture.wrapS = option.wrapS;
-    if (option.wrapT != null) texture.wrapT = option.wrapT;
-    if (option.magFilter != null) texture.magFilter = option.magFilter;
-    if (option.minFilter != null) texture.minFilter = option.minFilter;
-    if (option.format != null) texture.format = option.format;
-    if (option.type != null) texture.type = option.type;
-    if (option.anisotropy != null) texture.anisotropy = option.anisotropy;
+
+    texture.mapping ??= option.mapping;
+    texture.wrapS ??= option.wrapS;
+    texture.wrapT ??= option.wrapT;
+    texture.magFilter ??= option.magFilter;
+    texture.minFilter ??= option.minFilter;
+    texture.format ??= option.format;
+    texture.type ??= option.type;
+    texture.anisotropy ??= option.anisotropy;
   }
 
   private static setImageBitmapOptions(
