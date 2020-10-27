@@ -1,6 +1,6 @@
 {
   "name": "threejs-texture-switching-loader",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
