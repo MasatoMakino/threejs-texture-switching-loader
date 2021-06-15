@@ -1,0 +1,12 @@
+# .npmignore
+/.husky
+/src
+/__test__
+/docs
+/demoSrc
+.codeclimate.yml
+.prettierignore
+.travis.yml
+jest.config.js
+/gulpfile.js
+/tsconfig*.json
