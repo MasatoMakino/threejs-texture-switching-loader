@@ -1,12 +1,12 @@
 import {
-  TextureLoader,
-  ImageBitmapLoader,
-  Texture,
   CanvasTexture,
+  ImageBitmapLoader,
   LoadingManager,
+  Texture,
+  TextureLoader,
 } from "three";
-import { TextureSwitchingLoaderOption } from "./TextureSwitchingLoaderOption";
 import { CanvasTextureOption } from "./CanvasTextureOption";
+import { TextureSwitchingLoaderOption } from "./TextureSwitchingLoaderOption";
 
 /**
  * Texture image loader, Switching TextureLoader and ImageBitmapLoader.
