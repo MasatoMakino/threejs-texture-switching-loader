@@ -1,9 +1,9 @@
 import {
   Mapping,
-  Wrapping,
-  TextureFilter,
   PixelFormat,
   TextureDataType,
+  TextureFilter,
+  Wrapping,
 } from "three";
 
 /**

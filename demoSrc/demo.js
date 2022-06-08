@@ -1,14 +1,14 @@
-import { TextureSwitchingLoader } from "../lib/index";
+import { TextureSwitchingLoader } from "..";
 import {
-  initScene,
-  initLight,
   initCamera,
   initControl,
-  initRenderer,
   initHelper,
+  initLight,
+  initRenderer,
+  initScene,
   render,
 } from "./common";
-import { Mesh, MeshBasicMaterial, SphereGeometry, Cache } from "three";
+import { Cache, Mesh, MeshBasicMaterial, SphereGeometry } from "three";
 
 const W = 640;
 const H = 480;
