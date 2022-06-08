@@ -5,12 +5,12 @@
  */
 
 import {
-  initScene,
-  initLight,
   initCamera,
   initControl,
-  initRenderer,
   initHelper,
+  initLight,
+  initRenderer,
+  initScene,
   render,
 } from "./common";
 import {
