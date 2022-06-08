@@ -25,9 +25,15 @@
     "three": "^0.141.0"
   },
   "scripts": {
-    "start:dev": "gulp start_dev",
-    "build": "gulp build",
-    "build:clean": "gulp build_clean"
+    "prepare": "husky install",
+    "start:dev": "npm run server & npm run watch:tsc & npm run watch:demo",
+    "build": "npm run buildTS && npm run demo && npm run typedocs",
+    "demo": "npx @masatomakino/gulptask-demo-page --body '<canvas id=\"webgl-canvas\" width=\"640\" height=\"480\"></canvas>'",
+    "buildTS": "npx tsc --project tsconfig.json & npx tsc --project tsconfig.esm.json",
+    "typedocs": "npx typedoc --out ./docs/api src/index.ts",
+    "server": "npx @masatomakino/gulptask-dev-server -b ./docs/demo",
+    "watch:demo": "npm run demo -- -W",
+    "watch:tsc": "tsc -W --incremental --project tsconfig.json & tsc -W --incremental --project tsconfig.esm.json"
   },
   "peerDependencies": {
     "three": ">=0.126.0 <1.0.0"

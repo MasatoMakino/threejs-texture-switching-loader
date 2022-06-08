@@ -7,7 +7,6 @@
     "declarationMap": true,
     "outDir": "./lib",
     "rootDir": "./src",
-    "incremental": true,
 
     /* Module Resolution Options */
     "moduleResolution": "node",
