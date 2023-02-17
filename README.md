@@ -3,6 +3,7 @@
 > Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+[![build test](https://github.com/MasatoMakino/threejs-texture-switching-loader/actions/workflows/ci_main.yml/badge.svg)](https://github.com/MasatoMakino/threejs-texture-switching-loader/actions/workflows/ci_main.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1fda6a0f5c2e057085ae/maintainability)](https://codeclimate.com/github/MasatoMakino/threejs-texture-switching-loader/maintainability)
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=MasatoMakino&repo=threejs-texture-switching-loader)](https://github.com/MasatoMakino/threejs-texture-switching-loader)
