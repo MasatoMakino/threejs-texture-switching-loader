@@ -112,7 +112,6 @@ export class TextureSwitchingLoader {
     texture.mapping ??= option.mapping;
     texture.wrapS ??= option.wrapS;
     texture.wrapT ??= option.wrapT;
-    texture.magFilter ??= option.magFilter;
     texture.minFilter ??= option.minFilter;
     texture.format ??= option.format;
     texture.type ??= option.type;
