@@ -38,7 +38,7 @@ export class TextureSwitchingLoader {
    */
   public load(
     url: string,
-    option?: TextureSwitchingLoaderOption
+    option?: TextureSwitchingLoaderOption,
   ): Promise<Texture> {
     if (option == null) {
       option = {};
@@ -52,14 +52,14 @@ export class TextureSwitchingLoader {
 
   private loadImageBitmap(
     url: string,
-    option: TextureSwitchingLoaderOption
+    option: TextureSwitchingLoaderOption,
   ): Promise<Texture> {
     return new Promise((resolve, reject) => {
       const onload = (imageBitmap) => {
         const texture = new CanvasTexture(imageBitmap);
         TextureSwitchingLoader.setTextureOptions(
           texture,
-          option.canvasTextureOption
+          option.canvasTextureOption,
         );
         resolve(texture);
       };
@@ -77,7 +77,7 @@ export class TextureSwitchingLoader {
 
   private loadTexture(
     url: string,
-    option: TextureSwitchingLoaderOption
+    option: TextureSwitchingLoaderOption,
   ): Promise<Texture> {
     return new Promise((resolve, reject) => {
       this.textureLoader.load(
@@ -85,11 +85,11 @@ export class TextureSwitchingLoader {
         (texture) => {
           TextureSwitchingLoader.setImageBitmapOptions(
             texture,
-            option.imageBitmapOption
+            option.imageBitmapOption,
           );
           TextureSwitchingLoader.setTextureOptions(
             texture,
-            option.canvasTextureOption
+            option.canvasTextureOption,
           );
           resolve(texture);
         },
@@ -97,37 +97,34 @@ export class TextureSwitchingLoader {
         (err) => {
           console.log("TextureSwitchingLoader : ");
           reject(err);
-        }
+        },
       );
     });
   }
 
   private static setTextureOptions(
     texture: Texture,
-    option: CanvasTextureOption
+    option: CanvasTextureOption,
   ) {
-    if (option == null) return;
-
-    texture.mapping ??= option.mapping;
-    texture.wrapS ??= option.wrapS;
-    texture.wrapT ??= option.wrapT;
-    texture.minFilter ??= option.minFilter;
-    texture.format ??= option.format;
-    texture.type ??= option.type;
-    texture.anisotropy ??= option.anisotropy;
+    texture.mapping ??= option?.mapping;
+    texture.wrapS ??= option?.wrapS;
+    texture.wrapT ??= option?.wrapT;
+    texture.minFilter ??= option?.minFilter;
+    texture.format ??= option?.format;
+    texture.type ??= option?.type;
+    texture.anisotropy ??= option?.anisotropy;
+    texture.colorSpace = option?.colorSpace ?? "srgb";
   }
 
   private static setImageBitmapOptions(
     texture: Texture,
-    imageBitmapOption?: ImageBitmapOptions
+    imageBitmapOption?: ImageBitmapOptions,
   ) {
-    if (imageBitmapOption == null) return;
-
-    const orientation = imageBitmapOption.imageOrientation;
+    const orientation = imageBitmapOption?.imageOrientation;
     if (orientation != null) {
       texture.flipY = orientation === "flipY";
     }
-    if (imageBitmapOption.premultiplyAlpha != null)
+    if (imageBitmapOption?.premultiplyAlpha != null)
       texture.premultiplyAlpha =
         imageBitmapOption.premultiplyAlpha === "premultiply";
   }
