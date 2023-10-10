@@ -22,7 +22,7 @@
   "author": "MasatoMakino <unagiinu.g@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "three": "^0.157.0"
+    "three": ">=0.126.0 <1.0.0"
   },
   "devDependencies": {
     "@masatomakino/gulptask-demo-page": "^0.7.4",
