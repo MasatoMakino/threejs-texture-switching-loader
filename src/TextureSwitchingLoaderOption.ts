@@ -1,4 +1,4 @@
-import { CanvasTextureOption } from "./CanvasTextureOption";
+import { CanvasTextureOption } from "./index.js";
 
 /**
  * Options for Three.ImageBitmapLoader.

@@ -1,3 +1,3 @@
-export * from "./TextureSwitchingLoader";
-export * from "./CanvasTextureOption";
-export * from "./TextureSwitchingLoaderOption";
+export * from "./TextureSwitchingLoader.js";
+export * from "./CanvasTextureOption.js";
+export * from "./TextureSwitchingLoaderOption.js";
