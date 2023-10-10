@@ -47,6 +47,7 @@ const initSphere = (scene) => {
 
     function (imageBitmap) {
       const texture = new CanvasTexture(imageBitmap);
+      texture.colorSpace = "srgb";
       mat.map = texture;
       mat.needsUpdate = true;
       console.log(texture);
@@ -56,7 +57,7 @@ const initSphere = (scene) => {
 
     function (err) {
       console.log("An error happened", err);
-    }
+    },
   );
 };
 

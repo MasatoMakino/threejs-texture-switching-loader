@@ -1,4 +1,5 @@
 import {
+  ColorSpace,
   Mapping,
   PixelFormat,
   TextureDataType,
@@ -18,4 +19,5 @@ export interface CanvasTextureOption {
   format?: PixelFormat;
   type?: TextureDataType;
   anisotropy?: number;
+  colorSpace?: ColorSpace;
 }
