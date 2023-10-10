@@ -6,7 +6,6 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./esm",
-    "rootDir": "./src",
 
     /* Module Resolution Options */
     "moduleResolution": "node16",
