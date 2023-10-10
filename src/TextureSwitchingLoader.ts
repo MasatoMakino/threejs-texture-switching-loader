@@ -5,8 +5,7 @@ import {
   Texture,
   TextureLoader,
 } from "three";
-import { CanvasTextureOption } from "./CanvasTextureOption";
-import { TextureSwitchingLoaderOption } from "./TextureSwitchingLoaderOption";
+import { TextureSwitchingLoaderOption, CanvasTextureOption } from "./index.js";
 
 /**
  * Texture image loader, Switching TextureLoader and ImageBitmapLoader.

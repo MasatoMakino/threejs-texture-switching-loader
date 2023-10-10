@@ -1,4 +1,4 @@
-import { TextureSwitchingLoader } from "..";
+import { TextureSwitchingLoader } from "../esm/index.js";
 import {
   initCamera,
   initControl,
@@ -7,7 +7,7 @@ import {
   initRenderer,
   initScene,
   render,
-} from "./common";
+} from "./common.js";
 import { Cache, Mesh, MeshBasicMaterial, SphereGeometry } from "three";
 
 const W = 640;

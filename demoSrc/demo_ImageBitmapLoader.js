@@ -12,7 +12,7 @@ import {
   initRenderer,
   initScene,
   render,
-} from "./common";
+} from "./common.js";
 import {
   CanvasTexture,
   ImageBitmapLoader,

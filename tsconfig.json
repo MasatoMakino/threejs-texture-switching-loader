@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "target": "ES2015",
-    "module": "commonjs",
+    "target": "ES2021",
+    "module": "node16",
     "declaration": true,
     "declarationMap": true,
-    "outDir": "./lib",
-    "rootDir": "./src",
+    "outDir": "./esm",
 
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "esModuleInterop": true,
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "__test__"]
 }
