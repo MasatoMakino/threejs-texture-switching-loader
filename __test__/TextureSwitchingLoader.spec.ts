@@ -57,6 +57,9 @@ describe("TextureSwitchingLoader", () => {
     mockImageBitmap();
     const loader = new TextureSwitchingLoader();
     const texture = await loader.load(TestImage);
+    expect(texture).toBeTruthy();
+    expect(texture.image.width).toBe(17);
+    expect(texture.image.height).toBe(18);
     resetMock();
   });
 });
