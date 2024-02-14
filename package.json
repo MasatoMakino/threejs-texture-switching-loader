@@ -49,7 +49,9 @@
     "typedocs": "npx typedoc --out ./docs/api src/index.ts",
     "server": "browser-sync ./docs/demo -w",
     "watch:demo": "npm run demo -- -W",
-    "watch:tsc": "tsc -W --incremental"
+    "watch:tsc": "tsc -W --incremental",
+    "preversion": "git checkout main && git pull && npm ci && npm run build && npm test -- --run",
+    "postversion": "git add package.json package-lock.json && git checkout -b version/$(git describe --tags --abbrev=0)"
   },
   "bugs": {
     "url": "https://github.com/MasatoMakino/threejs-texture-switching-loader/issues"
