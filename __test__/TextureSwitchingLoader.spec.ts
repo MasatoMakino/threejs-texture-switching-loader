@@ -17,16 +17,11 @@ describe("TextureSwitchingLoader", () => {
     });
 
     window.createImageBitmap = mockCreateImageBitmap;
-    const mockFetch = vi
-      .spyOn(window, "fetch")
-      .mockImplementation(
-        async () => new Response('{ "key": "value" }', { status: 200 }),
-      );
   };
 
   const resetMock = () => {
     vi.restoreAllMocks();
-    clearSupportImageBitmapFlag;
+    clearSupportImageBitmapFlag();
   };
 
   it("should be constructable", () => {
@@ -40,9 +35,9 @@ describe("TextureSwitchingLoader", () => {
     expect(texture).toBeTruthy();
   });
 
-  it.fails("should be load image with wrong url", async () => {
+  it("should be load image with wrong url", async () => {
     const loader = new TextureSwitchingLoader();
-    const texture = await loader.load("not exist url");
+    expect(loader.load("not exist url")).rejects.toThrow();
   });
 
   it("should be load image with option", async () => {
