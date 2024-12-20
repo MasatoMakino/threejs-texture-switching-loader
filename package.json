@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@masatomakino/gulptask-demo-page": "^0.8.0",
+    "@masatomakino/release-helper": "^0.1.5",
     "@types/three": "^0.171.0",
     "@vitest/browser": "*",
     "@vitest/coverage-istanbul": "^2.0.5",
@@ -50,8 +51,9 @@
     "server": "browser-sync ./docs/demo -w",
     "watch:demo": "npm run demo -- -W",
     "watch:tsc": "tsc -W --incremental",
-    "preversion": "git checkout main && git pull && npm ci && npm run build && npm test -- --run",
-    "postversion": "git add package.json package-lock.json && git checkout -b version/$(git describe --tags --abbrev=0)"
+    "preversion": "npx @masatomakino/release-helper preversion",
+    "postversion": "npx @masatomakino/release-helper postversion",
+    "release": "npx @masatomakino/release-helper release"
   },
   "bugs": {
     "url": "https://github.com/MasatoMakino/threejs-texture-switching-loader/issues"
