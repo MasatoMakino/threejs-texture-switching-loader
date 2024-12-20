@@ -40,7 +40,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest --run",
     "coverage": "vitest --run --coverage",
     "start:dev": "npm run server & npm run watch:tsc & npm run watch:demo",
     "build": "npm run buildTS && npm run demo && npm run typedocs",
