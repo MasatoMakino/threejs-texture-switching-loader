@@ -1,6 +1,6 @@
 {
   "name": "@masatomakino/threejs-texture-switching-loader",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Texture image loader util for three.js, Switching TextureLoader and ImageBitmapLoader.",
   "type": "module",
   "exports": {
